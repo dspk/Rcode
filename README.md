@@ -13,6 +13,6 @@ The code can be found here: https://github.com/dspk/Rcode/blob/master/TextMining
 Handwritten Digit Recognition using Logistic Regression
 -------------------------------------------------------
 
-In this problem, I use logistic regression and a one vs. all approach to solve a handwritten digit recognition problem. This is a multi-class classification problem and we are trying to learn a non-linear decision boundary to classify the digits correctly. 
+In this problem, I use logistic regression and a one vs. all approach to solve a handwritten digit recognition problem. This is a multi-class classification problem and we are trying to learn a decision boundary to classify the digits correctly. 
 
 The code can be found here: https://github.com/dspk/Rcode/blob/master/RegularizedLogisticMulti.R
