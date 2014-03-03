@@ -10,6 +10,16 @@ For more details, see the Wiki page: https://github.com/dspk/Rcode/wiki/Text-min
 
 The code can be found here: https://github.com/dspk/Rcode/blob/master/TextMiningStackOverflow.R
 
+Handwritten Digit Recognition using SVM
+---------------------------------------
+
+In this example, I use Support Vector Machines (SVM) to solve a handwritten digit recognition problem. The dataset was 
+derived from the MNIST database of handwritten digits. 
+
+For more details, see the Wiki page: https://github.com/dspk/Rcode/wiki/SVM-Classification
+
+The code can be found here: https://github.com/dspk/Rcode/blob/master/SupportVectorMachinesMulti.R
+
 Handwritten Digit Recognition using Logistic Regression
 -------------------------------------------------------
 
