@@ -82,8 +82,7 @@ for(i in row_numbers){
   image(1:20,1:20,z,main=example.right[i, 401], col=color_spec(256))
 }
 
-#. View all the examples which were misclassified
-pdf("Misclassified digits.pdf")
+#. View all the examples which were misclassified - these can be saved to a pdf
 row_numbers = as.numeric(row.names(example.misclass))
 par(mfrow=c(4,4),pty='s',mar=c(1,1,1,1),xaxt='n',yaxt='n') 
 for(i in 1:length(row_numbers)){
@@ -91,4 +90,4 @@ for(i in 1:length(row_numbers)){
   z = t(z[20:1,  ])
   image(1:20,1:20,z,main=example.misclass[i, 401], col=color_spec(256))
 }
-dev.off()
+
