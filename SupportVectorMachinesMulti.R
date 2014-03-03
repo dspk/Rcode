@@ -74,7 +74,7 @@ example.right = test.set[which(predict.test == test.set[, 401]), ]  # the remain
 #. View a sample of 9 correctly classified test examples - note the digit 0 is mapped to the number 10
 color_spec = colorRampPalette(colors = c('grey', 'black'))
 rownum_increment = 0
-row_numbers = as.numeric(row.names(example.right)[c(1, 100, 150, 200, 250, 300, 350, 400, 450, 500) + rownum_increment])
+row_numbers = c(1, 200, 350, 500, 650, 950, 1100, 1250, 1400, 1600) + rownum_increment
 par(mfrow=c(4,3),pty='s',mar=c(1,1,1,1),xaxt='n',yaxt='n')
 for(i in row_numbers){
   z = array(as.vector(as.matrix(example.right[i, -401])), dim=c(20,20))
@@ -82,10 +82,10 @@ for(i in row_numbers){
   image(1:20,1:20,z,main=example.right[i, 401], col=color_spec(256))
 }
 
-#. View all the examples which were misclassified - these can be saved to a pdf
-row_numbers = as.numeric(row.names(example.misclass))
+#. View some examples which were misclassified
+row_numbers = c(1, 8, 10, 18, 23, 30, 33, 40, 48, 56)
 par(mfrow=c(4,4),pty='s',mar=c(1,1,1,1),xaxt='n',yaxt='n') 
-for(i in 1:length(row_numbers)){
+for(i in row_numbers){
   z = array(as.vector(as.matrix(example.misclass[i, -401])), dim=c(20,20))
   z = t(z[20:1,  ])
   image(1:20,1:20,z,main=example.misclass[i, 401], col=color_spec(256))
