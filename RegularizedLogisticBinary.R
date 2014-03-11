@@ -42,7 +42,7 @@ gradient = function(theta.initial, X, y, m, lambda.init){
 #. Try out the logistic model with a dataset
 getwd()
 setwd("SET CORRECT WORKING DIRECTORY")
-ex2 = read.table("./ex2data2.txt", header=FALSE, sep=",")
+#. ex2 = read.table("./YOUR_DATA_FILE.txt", header=FALSE, sep=",")
 colnames(ex2) = c("exam1score", "exam2score", "admission")
 m = nrow(ex2) # number of training examples
 
