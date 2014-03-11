@@ -36,11 +36,9 @@ gradient = function(theta.initial, X, y, m, lambda.init){
 }
 
 
-
+#. user needs to load data from their directory
 setwd("SET CORRECT WORKING DIRECTORY")
-install.packages("R.matlab")
-library(R.matlab)
-ex3 = readMat('ex3data1.mat')
+
 #. a single row denotes a single training example for a handwritten digit in the matrix X which is a 5000 by 400 dimensional matrix
 #. y is a 5000 dim vector containing labels for the training set
 #. the digit '0' is labeled as '10'
