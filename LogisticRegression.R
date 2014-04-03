@@ -1,4 +1,4 @@
-#. Example of logistic regression using optimization 
+#. Example of logistic regression (binary)
 
 #. Sigmoid/logistic function - synonymous with the hypothesis function of linear regression 
 #. In logistic regression the hypothesis is wrapped in a sigmoid function so that the hypothesis output is a probability
