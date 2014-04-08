@@ -52,7 +52,7 @@ error.train = 1.0 - (sum(diag(loss.mat.test)))/sum(loss.mat.test)   # 34% error;
 classAgreement(loss.mat.test) #. print classification agreement coefficients
 mean(predict.test == test.set$y.matrix)
 
-#. Tune the model parameters - here, tune mincut - minimum nonmber of observations to include in every child node
+#. Tune the model parameters - here, tune mincut - minimum number of observations to include in every child node
 #. smallest allowed node size
 #. Find training and test data errors for 6 different trees with minsizes between 300 and 400
 train_error = rep(0, 6)
