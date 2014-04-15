@@ -76,7 +76,7 @@ for(i in 1:length(unique(ex3$y))){
 
 #. Note - the paramteres in theta_finMatrix are ordered by class from 1 to 10, so the optimal parameters when class 1 == 1 and the remaining classes
 #. are set = 0 is in column 1 and the optimal parameters for when class 10 is set == 1 are in column 10
-#. so, before doing any calculations for predicted probabilities this order must be checked and matched with that corresponding to the 
+#. so, before doing any calculations for predicted probabilities check this order and match with that corresponding to the 
 #. y class labels in the original data
 #. Therefore, re-order theta_finMatrix
 A = theta_finMatrix[,10]
