@@ -1,5 +1,7 @@
 #. Handwritten digit recognition problem
 #. Example of solving a problem using multiclass regularized logistic regression : one vs all approach
+#. Author: @dspk
+
 
 #. Sigmoid/logistic function - synonymous with the hypothesis function of linear regression with gradient descent
 #. In logistic regression the hypothesis is wrapped in a sigmoid function so that the hypothesis output is a probability
