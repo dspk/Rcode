@@ -98,7 +98,7 @@ example.misclass = test.set[which(pruned.pred != test.set[, 401]), ]  # from the
 example.right = test.set[which(pruned.pred == test.set[, 401]), ]  # the remaining 1093 examples which were correctly classified
 
 
-#. View a sample of 9 correctly classified test examples - note the digit 0 is mapped to the number 10
+#. View a sample of 9 correctly classified test examples 
 color_spec = colorRampPalette(colors = c('grey', 'black'))
 jpeg("Tree_correctlyclassifieddigits.jpg")
 rownum_increment = 0
