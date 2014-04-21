@@ -9,7 +9,7 @@
 
 setwd("SET CORRECT WORKING DIRECTORY")
 
-#. a single row denotes a single training example for a handwritten digit in the matrix X which is a 5000 by 400 dimensional matrix
+#. a single row denotes a single training example for a handwritten digit in the matrix X 
 #. The digit '0' is labeled as '10'
 #. Construct matrices X and y and separate data into training and test sets
 X.matrix = as.matrix(ex3$X)
@@ -89,7 +89,7 @@ example.misclass = test.set[which(npredboost.digit$class != test.set[, 401]), ] 
 example.right = test.set[which(npredboost.digit$class == test.set[, 401]), ]  # the remaining 1421 examples were correctly classified
 
 
-#. View a sample of 9 correctly classified test examples - note the digit 0 is mapped to the number 10
+#. View a sample of 9 correctly classified test examples 
 color_spec = colorRampPalette(colors = c('grey', 'black'))
 jpeg("BOOSTING_correctlyclassifieddigits.jpg")
 rownum_increment = 0
