@@ -43,7 +43,7 @@ install.packages("ggplot2")
 library(ggplot2)
 qplot(x = xvar1, y =xvar2, data=Usedat, colour=factor(yvaradmit)) +
   geom_point(aes(shape=factor(yvaradmit)), size=3) +
-  labs(title = "Student exam scores", colour = "admit", shape="admit")
+  labs(title = "Scores", colour = "admit", shape="admit")
 
 #. Plot sigmoid function
 def.newdata = data.frame(y = c(rep(0, 50), rep(1, 50)), x = seq(-4, 4, length.out=100) )
