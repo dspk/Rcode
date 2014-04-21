@@ -56,14 +56,14 @@ rmse = function(x, y, m, gradientdescent.fit){
 setwd("SET CORRECT WORKING DIRECTORY")
 
 #. Read data
-ex2 = read.table("./ex1data2.txt", header=FALSE, sep=",") 
-colnames(ex2) = c("size", "rooms", "price")
-m = length(ex2[, 1]) # number of training examples
+Usedata = read.table("./Usedata.txt", header=FALSE, sep=",")
+colnames(Usedata) = c("xvar1", "xvar2", "yvar")
+m = length(Usedata[, 1]) # number of training examples
 
 # Construct input matrices X and y
-X = ex2[, -3]
-colnames(X) = c("size", "rooms")
-y = ex2[, 3]
+X = Usedata[, -3]
+colnames(X) = c("xvar1", "xvar2")
+y = Usedata[, 3]
 
 #. Perform feature normalization
 mu = matrix(sapply(X, mean), nrow=1)
@@ -92,9 +92,9 @@ plot(result$J_history, xlab="iterations", ylab = "cost", main="Cost function J(t
 gradientdescent.fit = X_new %*% result$theta
 install.packages("ggplot2")
 library(ggplot2)
-ggplot(data=ex2, aes(x = size, y =price)) +
-  geom_point(aes(size = rooms), col="red") +
-  geom_line(aes(x=size, y=gradientdescent.fit), col="blue") +
+ggplot(data=Usedata, aes(x = xvar1, y =yvar)) +
+  geom_point(aes(xvar1 = xvar2), col="red") +
+  geom_line(aes(x=xvar1, y=gradientdescent.fit), col="blue") +
   labs(title = "Data vs. Model fit")
   
 #. Call rmse function
