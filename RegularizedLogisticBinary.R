@@ -42,14 +42,14 @@ gradient = function(theta.initial, X, y, m, lambda.init){
 #. Try out the logistic model with a dataset
 getwd()
 setwd("SET CORRECT WORKING DIRECTORY")
-#. ex2 = read.table("./YOUR_DATA_FILE.txt", header=FALSE, sep=",")
-colnames(ex2) = c("exam1score", "exam2score", "admission")
-m = nrow(ex2) # number of training examples
+#. Usedat = read.table("./YOUR_DATA_FILE.txt", header=FALSE, sep=",")
+colnames(Usedat) = c("x1score", "x2score", "admission")
+m = nrow(Usedat) # number of training examples
 
 #. Feature Mapping - create more features from each data point
 #. Here I have created polynomials up to the 6th degree
-X.matrix = as.matrix(ex2[, -3])
-y.matrix = as.matrix(ex2[, 3])
+X.matrix = as.matrix(Usedat[, -3])
+y.matrix = as.matrix(Usedat[, 3])
 new.matrix = poly(cbind(X.matrix[,1], X.matrix[,2]), degree=6, raw=TRUE)
 x0 = rep(1, m)
 X_newmatrix = cbind(x0, new.matrix)
@@ -57,34 +57,33 @@ X_newmatrix = cbind(x0, new.matrix)
 #. Plot data
 install.packages("ggplot2")
 library(ggplot2)
-qplot(x = exam1score, y =exam2score, data=ex2, colour=factor(admission)) +
+qplot(x = x1score, y =x2score, data=Usedat, colour=factor(admission)) +
   geom_point(aes(shape=factor(admission)), size=3) +
-  labs(title = "Student exam scores", colour = "admit", shape="admit") +
+  labs(title = "Scores", colour = "admission", shape="admission") +
   scale_colour_manual(values = c("red", "green"))
 
 #. Plot sigmoid function
 def.newdata = data.frame(y = c(rep(0, 50), rep(1, 50)), x = seq(-4, 4, length.out=100) )
 qplot(x = x, y = y, data=def.newdata) +
-  geom_point() + 
+  geom_point() +
   stat_function(fun = sigmoid) +
   labs(title = "Sigmoid function")
 
 #. Initialize theta
 theta.initial = matrix(0, nrow=dim(X_newmatrix)[2], ncol=1)
-#. Set regularization parameter lambda 
+#. Set regularization parameter lambda
 lambda = 10
 
 
 #. Use an optimization solver that finds the minimum of an unconstrained function
-#. We want to find the parameters theta that minimize the cost function 
+#. We want to find the parameters theta that minimize the cost function
 theta_optimal = optim(theta.initial, cost, gradient, method="BFGS", control=list(maxit=400), X=X_newmatrix, y = y.matrix, m = nrow(X_newmatrix), lambda.init = lambda)
-print(theta_optimal)  #. final theta values
+print(theta_optimal) #. final theta values
 
 
 #. Calculate predicted probabilities
 #. and model accuracy
 h = sigmoid(X_newmatrix %*% theta_optimal$par) # predicted probabilites
-loss.matrix = table(as.numeric(h>=0.5), ex2$admission)  # table predicted vs observed
+loss.matrix = table(as.numeric(h>=0.5), Usedat$admission) # table predicted vs observed
 error = 1.0 - (loss.matrix[1,1]+loss.matrix[2,2])/sum(loss.matrix)
-accuracy =  (loss.matrix[1,1]+loss.matrix[2,2])/sum(loss.matrix)   # model's training accuracy is 75%  
-
+accuracy = (loss.matrix[1,1]+loss.matrix[2,2])/sum(loss.matrix) # model's training accuracy is 75%
