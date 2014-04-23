@@ -88,7 +88,7 @@ theta_finMat_reorder = matrix(as.numeric(unlist(C)),nrow=nrow(C)) #. convert to 
 #. Calculate predicted probabilities
 predicted.probs = sigmoid(X_newmatrix %*% theta_finMat_reorder)
 class.labels = as.character(unique(Usedat$y))
-colnames(predicted.probs) = class.labels #. assign class labels for predicted probabilities - note that the digit 0 is mapped to 10
+colnames(predicted.probs) = class.labels #. assign class labels for predicted probabilities 
 predicted.probsMax = apply(predicted.probs, 1, max) #. compute max probability values across all rows. i.e. pick the class for which the logistic classifier outputs the highest probabilities
 max.col(predicted.probs)
 a = colnames(predicted.probs)
