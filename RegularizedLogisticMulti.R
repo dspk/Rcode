@@ -43,41 +43,41 @@ setwd("SET CORRECT WORKING DIRECTORY")
 
 #. a single row denotes a single training example for a handwritten digit in the matrix X
 #. the digit '0' is labeled as '10'
-sapply(ex3$X,  class) #. make sure is numeric
-ex3$y = as.matrix(as.factor(ex3$y)) #. make sure is factor
-m = nrow(ex3$X) # number of training examples
+sapply(Usedat$X, class) #. make sure is numeric
+Usedat$y = as.matrix(as.factor(Usedat$y)) #. make sure is factor
+m = nrow(Usedat$X) # number of training examples
 
 #. Construct matrices X and y
-X.matrix = as.matrix(ex3$X)
-y.matrix = as.matrix(ex3$y)
+X.matrix = as.matrix(Usedat$X)
+y.matrix = as.matrix(Usedat$y)
 x0 = rep(1, dim(X.matrix)[1])
 X_newmatrix = cbind(x0, X.matrix)
 
 #. Initialize theta
 theta.initial = matrix(0, nrow=dim(X_newmatrix)[2], ncol=1)
-#. Set regularization parameter lambda 
+#. Set regularization parameter lambda
 lambda = 0
 
-#. Use an optimization solver to find the parameters theta that will minimize the cost function 
+#. Use an optimization solver to find the parameters theta that will minimize the cost function
 y_copy = y.matrix
-theta_optimal_1va = matrix(0, nrow=dim(X_newmatrix)[2], ncol=length(unique(ex3$y)))
+theta_optimal_1va = matrix(0, nrow=dim(X_newmatrix)[2], ncol=length(unique(Usedat$y)))
 theta_fin = vector("list", length=0)
 theta_finMatrix = vector("list", length=0)
 #. this is a one vs. all approach
-for(i in 1:length(unique(ex3$y))){
+for(i in 1:length(unique(Usedat$y))){
   theta.initial = matrix(0, nrow=dim(X_newmatrix)[2], ncol=1)
   y_copy = y.matrix #. Because we will use a new y for every iteration
   #. set up as a binary class problem
-  y_copy[which(y.matrix != i)] = 0  #. set labels for remaining 9 classes to 0
-  y_copy[which(y.matrix == i)] = 1  #. set labels for class i to 1
+  y_copy[which(y.matrix != i)] = 0 #. set labels for remaining 9 classes to 0
+  y_copy[which(y.matrix == i)] = 1 #. set labels for class i to 1
   theta_optimal_lva = optim(theta.initial, cost, gradient, method = "CG", X=X_newmatrix, y = y_copy, m = nrow(X_newmatrix), lambda.init = lambda) #. use the CG methos which works better when there are a large number of parameters
-  theta_fin = c(theta_fin, theta_optimal_lva)  #. collect all the results from the optimization
-  theta_finMatrix = cbind(theta_finMatrix, theta_optimal_lva$par)  #. collect the optimal parameters for each iteration(class) into theta_finMatrix
+  theta_fin = c(theta_fin, theta_optimal_lva) #. collect all the results from the optimization
+  theta_finMatrix = cbind(theta_finMatrix, theta_optimal_lva$par) #. collect the optimal parameters for each iteration(class) into theta_finMatrix
 }
 
 #. Note - the paramteres in theta_finMatrix are ordered by class from 1 to 10, so the optimal parameters when class 1 == 1 and the remaining classes
 #. are set = 0 is in column 1 and the optimal parameters for when class 10 is set == 1 are in column 10
-#. so, before doing any calculations for predicted probabilities check this order and match with that corresponding to the 
+#. so, before doing any calculations for predicted probabilities check this order and match with that corresponding to the
 #. y class labels in the original data
 #. Therefore, re-order theta_finMatrix
 A = theta_finMatrix[,10]
@@ -87,14 +87,14 @@ theta_finMat_reorder = matrix(as.numeric(unlist(C)),nrow=nrow(C)) #. convert to 
 
 #. Calculate predicted probabilities
 predicted.probs = sigmoid(X_newmatrix %*% theta_finMat_reorder)
-class.labels = as.character(unique(ex3$y))
-colnames(predicted.probs) = class.labels  #. assign class labels for predicted probabilities - note that the digit 0 is mapped to 10
+class.labels = as.character(unique(Usedat$y))
+colnames(predicted.probs) = class.labels #. assign class labels for predicted probabilities - note that the digit 0 is mapped to 10
 predicted.probsMax = apply(predicted.probs, 1, max) #. compute max probability values across all rows. i.e. pick the class for which the logistic classifier outputs the highest probabilities
 max.col(predicted.probs)
 a = colnames(predicted.probs)
-predicted.class = a[max.col(predicted.probs)]  #. predicted class based on max probability values
+predicted.class = a[max.col(predicted.probs)] #. predicted class based on max probability values
 
 #. Compute training model accuracy
-loss.matrix = table(predicted.class, ex3$y)  #. table predicted vs observed
+loss.matrix = table(predicted.class, Usedat$y) #. table predicted vs observed
 error = 1.0 - (sum(diag(loss.matrix)))/sum(loss.matrix)
-accuracy =  sum(diag(loss.matrix))/sum(loss.matrix)   #. model's training accuracy is 94%
+accuracy = sum(diag(loss.matrix))/sum(loss.matrix) #. model's training accuracy is 94%
