@@ -71,7 +71,7 @@ classAgreement(loss.matrix.test) #. examine other coefficients Comparing Classif
 example.misclass = test.set[which(predict.test != test.set[, 401]), ] # from the test set 65 examples were misclassified
 example.right = test.set[which(predict.test == test.set[, 401]), ] # the remaining 1605 examples which were correctly classified
 
-#. View a sample of 9 correctly classified test examples - note the digit 0 is mapped to the number 10
+#. View a sample of 9 correctly classified test examples 
 color_spec = colorRampPalette(colors = c('grey', 'black'))
 rownum_increment = 0
 row_numbers = c(1, 200, 350, 500, 650, 950, 1100, 1250, 1400, 1600) + rownum_increment
