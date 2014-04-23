@@ -41,8 +41,7 @@ gradient = function(theta.initial, X, y, m, lambda.init){
 #. user needs to load data from their directory
 setwd("SET CORRECT WORKING DIRECTORY")
 
-#. a single row denotes a single training example for a handwritten digit in the matrix X which is a 5000 by 400 dimensional matrix
-#. y is a 5000 dim vector containing labels for the training set
+#. a single row denotes a single training example for a handwritten digit in the matrix X
 #. the digit '0' is labeled as '10'
 sapply(ex3$X,  class) #. make sure is numeric
 ex3$y = as.matrix(as.factor(ex3$y)) #. make sure is factor
